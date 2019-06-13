@@ -14,12 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
  * @author xiaojing
  */
 @SpringBootApplication
-@RefreshScope
 public class NacosProviderApplication {
 
 
-	@Value("${name:xrq}")
-	private String ss;
 
 
 
@@ -29,7 +26,13 @@ public class NacosProviderApplication {
 	}
 
 	@RestController
+	@RefreshScope
 	class EchoController {
+
+		@Value("${name:xrq}")
+		private String ss;
+
+
 		@RequestMapping(value = "/echo/{string}", method = RequestMethod.GET)
 		public String echo(@PathVariable String string) {
 			return ss+"Hello Nacos Discovery " + string;
